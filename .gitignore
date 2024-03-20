@@ -1,0 +1,5 @@
+/server/.env
+/server/node_modules
+/chatappclient/.env.local
+/chatappclient/node_modules
+readme.txt
