@@ -239,7 +239,7 @@ const Signup = () => {
                       </a>
 
                       <p className="mt-6 text-xs text-gray-600 text-center">
-                        I agree to abide by ChatMe
+                        I agree to abide by ChatMe&apos;s
                         <a
                           href="#"
                           className="border-b border-gray-500 border-dotted"
