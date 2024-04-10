@@ -1,0 +1,9 @@
+- type: web
+  name: nextjs-static
+  runtime: static
+  buildCommand: npm; npm run build
+  staticPublishPath: out
+  pullRequestPreviewsEnabled: true # optionalsss
+  envVars:
+    - key: NODE_ENV
+      value: production

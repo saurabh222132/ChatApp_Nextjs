@@ -1,6 +1,7 @@
+"use client";
 import { selectLoggedInUser } from "@/redux/features/auth/AuthSlice";
 import { useSelector } from "react-redux";
-import { useRouter, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const Protected = (props) => {
   const loggedinUser = useSelector(selectLoggedInUser);
