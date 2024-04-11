@@ -1,3 +1,4 @@
+"use client";
 export const HomepageContent = () => {
   return (
     <div className="flex justify-center items-center h-screen">

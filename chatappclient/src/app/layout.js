@@ -1,3 +1,4 @@
+"use client";
 import { Inter } from "next/font/google";
 import Providers from "./storeProvider";
 import "./globals.css";
