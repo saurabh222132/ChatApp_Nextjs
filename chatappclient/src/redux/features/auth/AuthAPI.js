@@ -32,10 +32,14 @@ export const Login = async (userData) => {
           credentials: "include",
         }
       );
+      if (response.ok) {
+        const data = await response.json();
+        resolve(data);
+      } else {
+        const data = await response.json();
 
-      const data = await response.json();
-      console.log(data);
-      resolve(data);
+        resolve(data);
+      }
     } catch (err) {
       console.log("Error occured in Login API", err);
     }

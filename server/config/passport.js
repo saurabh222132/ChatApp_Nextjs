@@ -12,12 +12,20 @@ passport.use(
     async (email, password, done) => {
       console.log("Local Strategy Runs");
       await userModel.findOne({ email: email }).then((user, err) => {
-        if (err) return done(err);
-        if (!user) return done(null, false, { message: "Incorrect username." });
+        if (err) {
+          constole.log("Error in local strategy");
+          return done(err);
+        }
+        if (!user) {
+          console.log("IN user no foundcase");
+          return done(null, false, { message: "Incorrect username." });
+        }
         bcrypt.compare(password, user.password, (err, res) => {
           if (res) {
+            console.log("No. 3");
             return done(null, user);
           } else {
+            console.log(" NO . 4");
             return done(null, false, { message: "Incorrect password." });
           }
         });

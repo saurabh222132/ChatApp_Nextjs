@@ -40,6 +40,7 @@ const Signup = async (req, res) => {
 // ============================login================================
 
 const Login = async (req, res, next) => {
+  console.log("inthe login section", { request: req, user: req.user });
   if (req.user) {
     req.user.password = undefined;
     const total_users = await userModel.find({}).exec();
@@ -50,7 +51,7 @@ const Login = async (req, res, next) => {
       .status(200)
       .json({ success: true, user: req.user, totalUsers: total_users });
   } else {
-    res.status(401).send({ message: "Unauthorized" });
+    res.status(401).send({ message: "Unauthorizeddd" });
   }
 };
 

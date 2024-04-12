@@ -19,7 +19,9 @@ const port = process.env.PORT;
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",\
+    // origin: "https://chat-app-nextjs-zeta.vercel.app",
+    origin: process.env.CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
@@ -54,8 +56,16 @@ app.get("/checksession", async (req, res) => {
     const total_users = await userModel.find({}).exec();
     res.send({ success: true, user: req.user, totalUsers: total_users });
   } else {
-    res.status(401).json({ success: false, message: "Unathorized" });
+    res.status(401).json({ success: false, message: "Unathorizedd" });
   }
+});
+app.get("/authfail", (req, res) => {
+  console.log({ req: req, user: req.user });
+  res.status(401).send("Auth fail");
+});
+
+app.get("/", (req, res) => {
+  res.send({ Status: "Your Server Is Live!" });
 });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

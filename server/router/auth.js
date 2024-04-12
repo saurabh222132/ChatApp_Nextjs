@@ -7,13 +7,12 @@ require("dotenv").config();
 
 const router = express.Router();
 
-router
-  .post("/signup", Signup)
-  .post(
-    "/login",
-    passport.authenticate("local", { failureRedirect: "/authfail" }),
-    Login
-  );
+router.post("/signup", Signup).post(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/auth/loginfail" }),
+
+  Login
+);
 
 //==========Google Routes= ===============
 router.get(
@@ -25,7 +24,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     successRedirect: `${process.env.CLIENT_URL}/googleredirect`,
-    failureRedirect: "/authfail",
+    failureRedirect: "/googleloginfail",
   })
 );
 
@@ -44,6 +43,12 @@ router.get("/google/success", async (req, res) => {
 });
 router.get("/google/authfail", (req, res) => {
   res.status(401).json({ message: "Authentication failed." });
+});
+
+// login auth fails
+
+router.get("/loginfail", (req, res) => {
+  res.status(401).json({ success: false, message: "Invalid credentials" });
 });
 
 module.exports = { AuthRouter: router };

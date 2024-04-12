@@ -67,8 +67,12 @@ const AuthSlice = createSlice({
       })
       .addCase(LoginUserAsync.fulfilled, (state, action) => {
         console.log("login success", action.payload);
-        state.loggedInuser = action.payload.user;
-        state.totalUsers = [...action.payload.totalUsers];
+        state.status = "fulfilled";
+        state.loggedInuser ? (state.loggedInuser = action.payload.user) : "";
+        state.message = action.payload.message;
+        state.totalUsers
+          ? (state.totalUsers = [...action.payload.totalUsers])
+          : "";
       })
       .addCase(LoginUserByGoogleAsync.pending, (state, action) => {
         state.status = "pending";

@@ -6,6 +6,7 @@ import {
   LoginUserAsync,
   checkAuthAsync,
   selectLoggedInUser,
+  selectLoginMessage,
 } from "@/redux/features/auth/AuthSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -17,6 +18,7 @@ import Image from "next/image";
 const Login = () => {
   const dispatch = useDispatch();
   const LoggedInuser = useSelector(selectLoggedInUser);
+  const loginMessage = useSelector(selectLoginMessage);
   const router = useRouter();
 
   const {
@@ -125,6 +127,11 @@ const Login = () => {
                         <span className="text-red-500">
                           {errors.password.message}
                         </span>
+                      )}
+                      {loginMessage ? (
+                        <span className={"text-red-500"}>{loginMessage}</span>
+                      ) : (
+                        ""
                       )}
                       <button
                         type="submit"
