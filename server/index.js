@@ -20,8 +20,8 @@ app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:3000",\
-    // origin: "https://chat-app-nextjs-zeta.vercel.app",
-    origin: process.env.CLIENT_URL,
+    sssorigin: "https://chat-app-nextjs-zeta.vercel.app",
+    // origin: process.env.CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
