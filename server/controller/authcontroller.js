@@ -51,7 +51,7 @@ const Login = async (req, res, next) => {
       .status(200)
       .json({ success: true, user: req.user, totalUsers: total_users });
   } else {
-    res.status(401).send({ message: "Unauthorizeddd" });
+    res.status(401).send({ message: "Unauthorized" });
   }
 };
 
