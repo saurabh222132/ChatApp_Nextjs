@@ -68,9 +68,10 @@ const AuthSlice = createSlice({
       .addCase(LoginUserAsync.fulfilled, (state, action) => {
         console.log("login success", action.payload);
         state.status = "fulfilled";
-        state.loggedInuser ? (state.loggedInuser = action.payload.user) : "";
+        action.payload.user ? (state.loggedInuser = action.payload.user) : "";
         state.message = action.payload.message;
-        state.totalUsers
+
+        action.payload.totalUsers
           ? (state.totalUsers = [...action.payload.totalUsers])
           : "";
       })

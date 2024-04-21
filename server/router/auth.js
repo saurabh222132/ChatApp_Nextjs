@@ -7,6 +7,15 @@ require("dotenv").config();
 
 const router = express.Router();
 
+let client_url;
+
+if (process.env.NODE_ENV === "developement") {
+  client_url = process.env.DEVELOPEMENT_CLIENT_URL;
+}
+if (process.env.NODE_ENV === "production") {
+  client_url = process.env.PRODUCTION_CLIENT_URL;
+}
+
 router.post("/signup", Signup).post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/auth/loginfail" }),
@@ -23,7 +32,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: `${process.env.CLIENT_URL}/googleredirect`,
+    successRedirect: `${client_url}/googleredirect`,
     failureRedirect: "/googleloginfail",
   })
 );

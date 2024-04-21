@@ -32,12 +32,12 @@ export const Login = async (userData) => {
           credentials: "include",
         }
       );
+
       if (response.ok) {
         const data = await response.json();
         resolve(data);
       } else {
-        const data = await response.text();
-
+        const data = await response.json();
         resolve(data);
       }
     } catch (err) {

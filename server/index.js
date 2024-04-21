@@ -12,15 +12,24 @@ require("dotenv").config();
 
 const app = express();
 connectDB();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 //======================Middlewares================================
+
+let allowedOrigin;
+if (process.env.NODE_ENV === "developement") {
+  allowedOrigin = process.env.DEVELOPEMENT_CLIENT_URL;
+}
+if (process.env.NODE_ENV === "production") {
+  allowedOrigin = process.env.PRODUCTION_CLIENT_URL;
+}
 
 app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:3000",
-    origin: "https://chat-app-nextjs-zeta.vercel.app",
+    // origin: "https://chat-app-nextjs-zeta.vercel.app",
+    origin: allowedOrigin,
     // origin: process.env.CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
