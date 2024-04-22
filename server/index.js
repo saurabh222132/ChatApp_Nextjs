@@ -16,14 +16,6 @@ const port = process.env.PORT || 5000;
 
 //======================Middlewares================================
 
-let allowedOrigin;
-if (process.env.NODE_ENV === "developement") {
-  allowedOrigin = process.env.DEVELOPEMENT_CLIENT_URL;
-}
-if (process.env.NODE_ENV === "production") {
-  allowedOrigin = process.env.PRODUCTION_CLIENT_URL;
-}
-
 app.use(
   cors({
     credentials: true,
