@@ -3,11 +3,13 @@
     {
       "src": "index.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "build/**",
-      "use": "@vercel/static"
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "index.js",
+      "methods": ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
+    }
+  ]
 }

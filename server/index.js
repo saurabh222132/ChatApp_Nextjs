@@ -31,7 +31,7 @@ app.use(
     // origin: "https://chat-app-nextjs-zeta.vercel.app",
     origin: allowedOrigin,
     // origin: process.env.CLIENT_URL,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
