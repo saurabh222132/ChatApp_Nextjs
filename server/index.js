@@ -11,7 +11,7 @@ const { userModel } = require("./model/usermodel.js");
 require("dotenv").config();
 
 const app = express();
-connectDB();
+
 const port = process.env.PORT || 5000;
 
 //======================Middlewares================================
@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 app.use(
   cors({
     credentials: true,
-    // origin: "http://localhost:3000",
+    //  origin: "http://localhost:3000",
     origin: "https://chat-app-nextjs-zeta.vercel.app",
     // origin: process.env.CLIENT_URL,
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -63,10 +63,11 @@ app.get("/authfail", (req, res) => {
   console.log({ req: req, user: req.user });
   res.status(401).send("Auth fail");
 });
-
+connectDB();
 app.get("/", (req, res) => {
   res.send({ Status: "Your Server Is Live!" });
 });
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
