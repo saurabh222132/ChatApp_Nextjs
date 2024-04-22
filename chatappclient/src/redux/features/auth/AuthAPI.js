@@ -37,7 +37,7 @@ export const Login = async (userData) => {
         const data = await response.json();
         resolve(data);
       } else {
-        const data = await response.json();
+        const data = await response.text();
         resolve(data);
       }
     } catch (err) {

@@ -16,12 +16,13 @@ if (process.env.NODE_ENV === "production") {
   client_url = process.env.PRODUCTION_CLIENT_URL;
 }
 
-router.post("/signup", Signup).post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/auth/loginfail" }),
-
-  Login
-);
+router
+  .post("/signup", Signup)
+  .post(
+    "/login",
+    passport.authenticate("local", { failureRedirect: "/auth/loginfail" }),
+    Login
+  );
 
 //==========Google Routes= ===============
 router.get(
