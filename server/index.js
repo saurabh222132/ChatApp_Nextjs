@@ -19,9 +19,12 @@ const port = process.env.PORT || 5000;
 app.use(
   cors({
     credentials: true,
-    //  origin: "http://localhost:3000",
-    origin: "https://chat-app-nextjs-zeta.vercel.app",
-    // origin: process.env.CLIENT_URL,
+
+    origin: [
+      "https://chat-app-nextjs-zeta.vercel.app/",
+      "https://nextchatapp2.netlify.app/",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
