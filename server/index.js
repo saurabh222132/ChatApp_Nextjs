@@ -32,14 +32,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "keyboard cat",
-    resave: false,
     store: MongoStore.create({
       mongoUrl: process.env.DB_URI,
       collectionName: "sessions",
     }),
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    secret: "keyboard cat",
+    resave: false,
   })
 );
 app.use(passport.initialize());
