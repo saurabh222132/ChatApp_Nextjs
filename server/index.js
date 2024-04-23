@@ -35,7 +35,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/passport",
+      mongoUrl: process.env.DB_URI,
       collectionName: "sessions",
     }),
     saveUninitialized: false,
