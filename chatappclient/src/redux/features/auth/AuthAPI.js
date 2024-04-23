@@ -28,7 +28,6 @@ export const Login = async (userData) => {
           method: "POST",
           body: JSON.stringify(userData),
           headers: { "content-type": "application/json" },
-          // headers: { "Content-Type": "application/x-www-form-urlencoded" },
           credentials: "include",
         }
       );

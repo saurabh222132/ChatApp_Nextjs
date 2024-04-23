@@ -21,11 +21,10 @@ app.use(
     credentials: true,
 
     origin: [
-      "https://chat-app-nextjs-zeta.vercel.app/",
-      "https://nextchatapp2.netlify.app/",
+      "https://chat-app-nextjs-zeta.vercel.app",
+      "https://nextchatapp2.netlify.app",
       "http://localhost:3000",
     ],
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
