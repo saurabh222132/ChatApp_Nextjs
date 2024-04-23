@@ -5,7 +5,10 @@ const dotenv = require("dotenv").config();
 const connectDB = async () => {
   try {
     await mongoose
-      .connect(process.env.DB_URI, { serverSelectionTimeoutMS: 30000 })
+      .connect(
+        "mongodb+srv://skv222132:Saurabh222132@cluster1.bdobp9b.mongodb.net/chatapp",
+        { serverSelectionTimeoutMS: 30000 }
+      )
       .then((response) => {
         console.log("database connected");
       });
