@@ -31,8 +31,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   session({
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_URI,
+      collectionName: "sessions",
+    }),
     saveUninitialized: false,
-    // cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
   })
