@@ -4,6 +4,7 @@ const saltRounds = 12;
 
 // ===================Signup========================
 const Signup = async (req, res) => {
+  console.log(req.body);
   try {
     const user = await userModel.findOne({ email: req.body.email }).exec();
     if (!user) {

@@ -28,7 +28,7 @@ app.use(
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.json());
 app.use(
   session({
     store: MongoStore.create({
@@ -41,7 +41,7 @@ app.use(
     resave: false,
   })
 );
-// app.use(passport.initialize());
+app.use(passport.initialize());
 app.use(passport.authenticate("session"));
 
 // ===============requiring Local Strategy===================
