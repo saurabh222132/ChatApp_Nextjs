@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const MongoStore = require("connect-mongo").;
+const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const { connectDB } = require("./config/db.js");
 const { AuthRouter } = require("./router/auth.js");
