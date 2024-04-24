@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").;
 const session = require("express-session");
 const { connectDB } = require("./config/db.js");
 const { AuthRouter } = require("./router/auth.js");
@@ -28,17 +28,12 @@ app.use(
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 app.use(
   session({
-    store: MongoStore.create({
-      mongoUrl: process.env.DB_URI,
-      collectionName: "sessions",
-    }),
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    secret: "keyboard cat",
+    // cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
   })
 );
