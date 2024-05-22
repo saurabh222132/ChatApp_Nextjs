@@ -1,8 +1,5 @@
 "use client";
-import {
-  selectLoggedInUser,
-  setSocketInstance,
-} from "@/redux/features/auth/AuthSlice";
+import { selectLoggedInUser } from "@/redux/features/auth/AuthSlice";
 import { Navbar } from "@/redux/features/navbar/navbar";
 import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -19,33 +16,33 @@ export const HomepageContent = () => {
 
   const loggedinUser = useSelector(selectLoggedInUser);
   console.log(loggedinUser);
-  useEffect(() => {
-    // const socket = io("http://localhost:5000");
-    // dispatch(setSocketInstance(socket));
+  // useEffect(() => {
+  //   // const socket = io("http://localhost:5000");
+  //   // dispatch(setSocketInstance(socket));
 
-    console.log("scoket", socket, "socket", typeof socket);
+  //   console.log("scoket", socket, "socket", typeof socket);
 
-    socket.on("connect", () => {
-      console.log("connected", socket.id);
+  //   socket.on("connect", () => {
+  //     console.log("connected", socket.id);
 
-      socket.emit("onlineUserSend", {
-        email: loggedinUser.email,
-        socketId: socket.id,
-      });
-    });
+  //     socket.emit("onlineUserSend", {
+  //       email: loggedinUser.email,
+  //       socketId: socket.id,
+  //     });
+  //   });
 
-    socket.on("list-of-online-user-after-any-socket-disconnect", (data) => {
-      dispatch(addOnlineUsers(data));
-    });
+  //   socket.on("list-of-online-user-after-any-socket-disconnect", (data) => {
+  //     dispatch(addOnlineUsers(data));
+  //   });
 
-    socket.on("addNewUserToOnlineList", (data) => {
-      console.log("Received online users", data);
-      dispatch(addOnlineUsers(data));
-    });
-    socket.on("get-message", (data) => {
-      console.log("get data from other users", data);
-    });
-  }, []);
+  //   socket.on("addNewUserToOnlineList", (data) => {
+  //     console.log("Received online users", data);
+  //     dispatch(addOnlineUsers(data));
+  //   });
+  //   socket.on("get-message", (data) => {
+  //     console.log("get data from other users", data);
+  //   });
+  // }, []);
 
   return (
     <div>
