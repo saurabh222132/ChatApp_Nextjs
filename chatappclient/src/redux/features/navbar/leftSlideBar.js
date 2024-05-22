@@ -34,6 +34,7 @@ export const Sidebar = ({ isHiddenOnMobile }) => {
           if (userfound.length != 0) status = "online";
           return (
             <UserDisplayCard
+              key={index}
               email={user.email}
               name={user.name}
               status={status}
