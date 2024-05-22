@@ -41,8 +41,8 @@ passport.use(
     {
       clientID: `${process.env.CLIENT_ID}`,
       clientSecret: `${process.env.CLIENT_SECRET}`,
-      callbackURL:
-        "https://chat-app-nextjs-djca.vercel.app/auth/google/callback",
+      callbackURL: "/auth/google/callback", // here you have to put full URL of backend when deploy this site like : https://chat-app-nextjs.vercel.app/auth/google/callback
+
       scope: ["profile", "email"],
     },
     async (accessToken, refreshToken, profile, done) => {

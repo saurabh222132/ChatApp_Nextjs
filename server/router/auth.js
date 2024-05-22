@@ -24,24 +24,32 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: `${process.env.PRODUCTION_CLIENT_URL}/googleredirect`,
+    successRedirect: `${
+      process.env.NODE_ENV === "production"
+        ? process.env.PRODUCTION_CLIENT_URL
+        : process.env.DEVELOPMENT_CLIENT_URL
+    }/googleredirect`,
     failureRedirect: "/googleloginfail",
   })
 );
 
-router.get("/google/success", async (req, res) => {
-  if (req.user) {
-    const total_users = await userModel.find({}).exec();
-    total_users.forEach((user) => {
-      user["password"] = undefined;
-    });
-    res
-      .status(200)
-      .json({ success: true, user: req.user, totalUsers: total_users });
-  } else {
-    res.status(401).send({ message: "unauthorized" });
+router.get(
+  "/google/success",
+
+  async (req, res) => {
+    if (req.user) {
+      const total_users = await userModel.find({}).exec();
+      total_users.forEach((user) => {
+        user["password"] = undefined;
+      });
+      res
+        .status(200)
+        .json({ success: true, user: req.user, totalUsers: total_users });
+    } else {
+      res.status(401).send({ message: "unauthorized" });
+    }
   }
-});
+);
 router.get("/google/authfail", (req, res) => {
   res.status(401).json({ message: "Authentication failed." });
 });

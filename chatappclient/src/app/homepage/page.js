@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { selectLoggedInUser } from "@/redux/features/auth/AuthSlice";
 import Protected from "../protected/page";
 import { HomepageContent } from "./coponents/homepage";
+
 const Homepage = () => {
   const loggedinUser = useSelector(selectLoggedInUser);
   return (
-    <div>
+    <div className=" ">
       <Protected>
         <div>
           {!loggedinUser ? (

@@ -8,6 +8,10 @@ const initialState = {
   message: null,
   totalUsers: [],
   loggedInuser: null,
+  OnlineUsers: [],
+  selectedUser: null,
+  // socketInstance: null,
+  usersMessagees: [], // [ {email : abc@gmail.com, name : " name " , hisMessages: [] , mineMessages : [] } , .... ]
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -45,7 +49,19 @@ export const checkAuthAsync = createAsyncThunk(
 const AuthSlice = createSlice({
   name: "authSlcie",
   initialState,
-  reducers: {},
+  reducers: {
+    addOnlineUsers: (state, action) => {
+      console.log("Action into the slice", action);
+      state.OnlineUsers = action.payload;
+    },
+    setSlectedUser: (state, action) => {
+      console.log("action payload of setselctedusr", action.payload);
+      state.selectedUser = action.payload;
+    },
+    // setSocketInstance: (state, action) => {
+    //   state.socketInstance = action.payload;
+    // },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -79,8 +95,13 @@ const AuthSlice = createSlice({
         state.status = "pending";
       })
       .addCase(LoginUserByGoogleAsync.fulfilled, (state, action) => {
-        state.loggedInuser = action.payload.user;
-        state.totalUsers = [...action.payload.totalUsers];
+        state.status = "fulfilled";
+        action.payload.user ? (state.loggedInuser = action.payload.user) : "";
+        state.message = action.payload.message;
+
+        action.payload.totalUsers
+          ? (state.totalUsers = [...action.payload.totalUsers])
+          : "";
       })
       .addCase(checkAuthAsync.pending, (state, action) => {
         state.status = "pending";
@@ -95,9 +116,15 @@ const AuthSlice = createSlice({
 });
 
 // export const { addValue, subValue, addByAmount } = AuthSlice.actions;
+export const { addOnlineUsers, setSlectedUser, setSocketInstance } =
+  AuthSlice.actions;
 
 export const selectLoggedInUser = (state) => state.auth.loggedInuser;
+export const selectTotalUsers = (state) => state.auth.totalUsers;
 export const selectLoginMessage = (state) => state.auth.message;
 export const selectLogingSuccess = (state) => state.auth.success;
+export const selectOnlineUsers = (state) => state.auth.OnlineUsers;
+export const selectSelectedUser = (state) => state.auth.selectedUser;
+// export const selectSocketInstance = (state) => state.auth.socketInstance;
 
 export const AuthReducer = AuthSlice.reducer;
